@@ -1,0 +1,73 @@
+POST  http://localhost:3001/users
+Content-Type: application/json
+
+{
+   "username": "sibil",
+   "password": "test1234"
+}
+
+###
+
+GET http://localhost:3001/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmltIiwicGFzcyI6InRlc3QxMjM0IiwiaWF0IjoxNjIwMTQxNDU1LCJleHAiOjE2MjAxNDE1MTV9.gWQcJug29OdXXnwDJiICoNjzQkdleSSnjwpM1pvvuys
+###
+
+POST http://localhost:3001/token
+Content-Type: application/json
+
+{
+   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmltIiwicGFzcyI6InRlc3QxMjM0IiwiaWF0IjoxNjIwMTM1NDg3fQ.Vcy08V84G42luL_TmLaFwtoYioxG2Ov5yesXPeyXuCs"
+}
+
+###
+
+POST http://localhost:3001/login
+Content-Type: application/json
+
+{
+   "username": "Jim",
+   "password": "test1234"
+}
+
+####
+
+DELETE http://localhost:3001/logout
+Content-Type: application/json
+
+{
+   "token": ""
+}
+
+###
+
+DELETE http://localhost:3001/venues/:venue_id/photos/:id
+Content-Type: application/json
+
+{
+   "id": 1
+}
+
+###
+
+GET http://localhost:3001/venues
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmltIiwicGFzcyI6InRlc3QxMjM0IiwiaWF0IjoxNjIwMTQxNDU1LCJleHAiOjE2MjAxNDE1MTV9.gWQcJug29OdXXnwDJiICoNjzQkdleSSnjwpM1pvvuys
+
+###
+
+POST http://localhost:3001/venues
+Content-Type: application/json
+
+
+###
+
+GET http://localhost:3001/venues/:id
+Content-Type: application/json
+
+{
+   "id": "1"
+}
+
+###
+
+GET http://localhost:3001/venues/id/photos/id
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmltIiwicGFzcyI6InRlc3QxMjM0IiwiaWF0IjoxNjIwMTI1MDUzLCJleHAiOjE2MjAxMjUxMTN9.Qz0gMIYlUxKOnmf2Q9gSbwZco-mqomypqNSiS1vhJIo

@@ -1,0 +1,497 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "My User Project CRUD",
+    "description": "My User Project Application API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3001",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "API for users in the system"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "components": {
+    "securititySchemes": {
+      "Bearer": {
+        "type":"http",
+        "description": "Enter JWT Bearer token",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+  {
+    "Bearer": []
+  }
+],
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create new user in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      },
+      "get": {
+          "tags": [
+            "Users"
+          ],
+          "security": [
+            {
+              "Bearer": []
+            }
+          ],
+          "summary": "Get all users in system",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Users"
+              }
+            }
+          }
+        }
+    },
+    "/users/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of user that we want to find",
+          "type": "integer"
+        }
+      ],
+      "delete": {
+        "summary": "Delete user with given ID",
+        "tags": [
+          "Users"
+        ],
+        "responses": {
+          "200": {
+            "description": "User is deleted",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary":"Get user with given ID",
+        "tags": [
+          "Users"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update user with given ID",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/updateUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User is updated",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/venues": {
+    "post": {
+      "tags": [
+        "Venues"
+      ],
+      "summary": "Create new venue in system",
+      "parameters": [
+        {
+          "name": "venue",
+          "in": "body",
+          "description": "Venue that we want to create",
+          "schema": {
+            "$ref": "#/definitions/Venue"
+          }
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "responses": {
+        "201": {
+          "description": "New user is created",
+          "schema": {
+            "$ref": "#/definitions/Venue"
+          }
+        }
+      }
+    },
+    "get": {
+        "tags": [
+          "Venues"
+        ],
+        "summary": "Get all venues in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Venues"
+            }
+          }
+        }
+      }
+    },
+    "/venues/{id}": {
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "description": "ID of venue that we want to find",
+        "type": "integer"
+      }
+    ],
+    "get": {
+      "summary":"Get venue with given ID",
+      "tags": [
+        "Venues"
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "schema": {
+            "$ref": "#/definitions/Venue"
+          }
+        }
+      }
+    },
+    "delete": {
+      "summary": "Delete venue with given ID",
+      "tags": [
+        "Venues"
+      ],
+      "responses": {
+        "200": {
+          "description": "Venue is deleted",
+          "schema": {
+            "$ref": "#/definitions/Venue"
+          }
+        }
+      }
+    },
+    "put": {
+      "summary": "Update venue with given ID",
+      "tags": [
+        "Venues"
+      ],
+      "parameters": [
+        {
+          "name": "user",
+          "in": "body",
+          "description": "Venue with new values of properties",
+          "schema": {
+            "$ref": "#/definitions/updateVenue"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Venue is updated",
+          "schema": {
+            "$ref": "#/definitions/Venue"
+          }
+        }
+      }
+    }
+    },
+    "/venues/{id}/photos": {
+    "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of venue that we want to find",
+          "type": "integer"
+        }],
+    "post": {
+      "tags": [
+        "Photos"
+      ],
+      "summary": "Create new photo in system",
+      "parameters": [
+        {
+          "name": "user",
+          "in": "body",
+          "description": "Photo that we want to create",
+          "schema": {
+            "$ref": "#/definitions/Photo"
+          }
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "responses": {
+        "201": {
+          "description": "New photo is created",
+          "schema": {
+            "$ref": "#/definitions/Photo"
+          }
+        }
+      }
+    }
+  },
+    "/venues/{venue_id}/photos{id}": {
+    "parameters": [
+      {
+        "name": "venue_id",
+        "in": "path",
+        "required": true,
+        "description": "ID of venue that we want to find",
+        "type": "integer"
+      },
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "description": "ID of photo that we want to find",
+        "type": "integer"
+      }
+    ],
+    "get": {
+      "summary":"Get photo with given venue ID and photo ID",
+      "tags": [
+        "Photos"
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "schema": {
+            "$ref": "#/definitions/Photo"
+          }
+        }
+      }
+    },
+    "put": {
+      "summary": "Update photo with given venue ID and photo ID",
+      "tags": [
+        "Photos"
+      ],
+      "parameters": [
+        {
+          "name": "photo",
+          "in": "body",
+          "description": "Venue with new values of properties",
+          "schema": {
+            "$ref": "#/definitions/updatePhoto"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Photos is updated",
+          "schema": {
+            "$ref": "#/definitions/Photo"
+          }
+        }
+      }
+    },
+    "delete": {
+      "summary": "Delete venue with given venue ID and photo ID",
+      "tags": [
+        "Photos"
+      ],
+      "responses": {
+        "204": {
+          "description": "Photo is deleted"
+        }
+      }
+    }
+    }
+  },
+  "definitions": {
+    "User": {
+      "required": [
+        "username",
+        "password"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "uniqueItems": true
+        },
+        "isPublic": {
+          "type": "boolean"
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "updateUser": {
+      "required": [
+        "username",
+        "password"
+      ],
+      "properties": {
+        "isPublic": {
+          "type": "boolean"
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "Users": {
+      "type": "array",
+      "$ref": "#/definitions/User"
+    },
+    "Venue": {
+      "required": [
+        "id",
+        "name",
+        "address"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "uniqueItems": true
+        },
+        "isPublic": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        }
+      }
+    },
+    "updateVenue": {
+      "required": [
+        "name",
+        "address"
+      ],
+      "properties": {
+        "isPublic": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        }
+      }
+    },
+    "Venues": {
+      "type": "array",
+      "$ref": "#/definitions/Venue"
+    },
+    "Photo": {
+      "required": [
+        "id",
+        "venue_id",
+        "author_id"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "uniqueItems": true
+        },
+        "isPublic": {
+          "type": "boolean"
+        },
+        "venue_id": {
+          "type": "string"
+        },
+        "author_id": {
+          "type": "string"
+        }
+      }
+    },
+    "updatePhoto": {
+      "required": [
+        "author_id",
+        "venue_id"
+      ],
+      "properties": {
+        "isPublic": {
+          "type": "boolean"
+        },
+        "venue_id": {
+          "type": "string"
+        },
+        "author_id": {
+          "type": "string"
+        }
+      }
+    },
+    "Photos": {
+      "type": "array",
+      "$ref": "#/definitions/Photo"
+    }
+  }
+}
